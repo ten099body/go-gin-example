@@ -1,3 +1,4 @@
+basePath: '{{.BasePath}}'
 definitions:
   app.Response:
     properties:
@@ -8,6 +9,7 @@ definitions:
       msg:
         type: string
     type: object
+host: '{{.Host}}'
 info:
   contact: {}
   description: An example of gin
@@ -25,17 +27,20 @@ paths:
         in: body
         name: tag_id
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       - description: State
         in: body
         name: state
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       - description: CreatedBy
         in: body
         name: created_by
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       produces:
       - application/json
       responses:
@@ -43,10 +48,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Get multiple articles
     post:
       parameters:
@@ -55,37 +62,43 @@ paths:
         name: tag_id
         required: true
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       - description: Title
         in: body
         name: title
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: Desc
         in: body
         name: desc
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: Content
         in: body
         name: content
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: CreatedBy
         in: body
         name: created_by
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: State
         in: body
         name: state
         required: true
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       produces:
       - application/json
       responses:
@@ -93,10 +106,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Add article
   /api/v1/articles/{id}:
     delete:
@@ -113,10 +128,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Delete article
     get:
       parameters:
@@ -132,10 +149,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Get a single article
     put:
       parameters:
@@ -148,33 +167,39 @@ paths:
         in: body
         name: tag_id
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: Title
         in: body
         name: title
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: Desc
         in: body
         name: desc
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: Content
         in: body
         name: content
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: ModifiedBy
         in: body
         name: modified_by
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: State
         in: body
         name: state
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       produces:
       - application/json
       responses:
@@ -182,10 +207,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Update article
   /api/v1/tags:
     get:
@@ -205,10 +232,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Get multiple article tags
     post:
       parameters:
@@ -217,17 +246,20 @@ paths:
         name: name
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: State
         in: body
         name: state
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       - description: CreatedBy
         in: body
         name: created_by
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       produces:
       - application/json
       responses:
@@ -235,10 +267,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Add article tag
   /api/v1/tags/{id}:
     delete:
@@ -255,10 +289,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Delete article tag
     put:
       parameters:
@@ -272,18 +308,21 @@ paths:
         name: name
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: State
         in: body
         name: state
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       - description: ModifiedBy
         in: body
         name: modified_by
         required: true
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       produces:
       - application/json
       responses:
@@ -291,10 +330,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Update article tag
   /api/v1/tags/export:
     post:
@@ -303,12 +344,14 @@ paths:
         in: body
         name: name
         schema:
-          type: string
+          $ref: '#/definitions/string'
+          type: object
       - description: State
         in: body
         name: state
         schema:
-          type: integer
+          $ref: '#/definitions/int'
+          type: object
       produces:
       - application/json
       responses:
@@ -316,10 +359,12 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Export article tag
   /api/v1/tags/import:
     post:
@@ -336,17 +381,19 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Import Image
   /auth:
-    get:
+    post:
       parameters:
-      - description: userName
+      - description: account
         in: query
-        name: username
+        name: account
         required: true
         type: string
       - description: password
@@ -361,9 +408,11 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/app.Response'
+            type: object
       summary: Get Auth
 swagger: "2.0"

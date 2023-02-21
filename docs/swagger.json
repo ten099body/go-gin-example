@@ -11,6 +11,8 @@
         },
         "version": "1.0"
     },
+    "host": "{{.Host}}",
+    "basePath": "{{.BasePath}}",
     "paths": {
         "/api/v1/articles": {
             "get": {
@@ -24,7 +26,8 @@
                         "name": "tag_id",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     },
                     {
@@ -32,7 +35,8 @@
                         "name": "state",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     },
                     {
@@ -40,7 +44,8 @@
                         "name": "created_by",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     }
                 ],
@@ -48,12 +53,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -71,7 +78,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     },
                     {
@@ -80,7 +88,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -89,7 +98,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -98,7 +108,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -107,7 +118,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -116,7 +128,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     }
                 ],
@@ -124,12 +137,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -155,12 +170,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -184,7 +201,8 @@
                         "name": "tag_id",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -192,7 +210,8 @@
                         "name": "title",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -200,7 +219,8 @@
                         "name": "desc",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -208,7 +228,8 @@
                         "name": "content",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -217,7 +238,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -225,7 +247,8 @@
                         "name": "state",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     }
                 ],
@@ -233,12 +256,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -262,12 +287,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -298,12 +325,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -321,7 +350,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -329,7 +359,8 @@
                         "name": "state",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     },
                     {
@@ -337,7 +368,8 @@
                         "name": "created_by",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     }
                 ],
@@ -345,12 +377,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -369,7 +403,8 @@
                         "name": "name",
                         "in": "body",
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -377,7 +412,8 @@
                         "name": "state",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     }
                 ],
@@ -385,12 +421,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -416,12 +454,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -448,7 +488,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     },
                     {
@@ -456,7 +497,8 @@
                         "name": "state",
                         "in": "body",
                         "schema": {
-                            "type": "integer"
+                            "type": "object",
+                            "$ref": "#/definitions/int"
                         }
                     },
                     {
@@ -465,7 +507,8 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "object",
+                            "$ref": "#/definitions/string"
                         }
                     }
                 ],
@@ -473,12 +516,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -502,12 +547,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
@@ -515,7 +562,7 @@
             }
         },
         "/auth": {
-            "get": {
+            "post": {
                 "produces": [
                     "application/json"
                 ],
@@ -523,8 +570,8 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "userName",
-                        "name": "username",
+                        "description": "account",
+                        "name": "account",
                         "in": "query",
                         "required": true
                     },
@@ -540,12 +587,14 @@
                     "200": {
                         "description": "OK",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
+                            "type": "object",
                             "$ref": "#/definitions/app.Response"
                         }
                     }
