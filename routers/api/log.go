@@ -18,6 +18,8 @@ type ReqReceive struct {
 	Data []string `json:"data"`
 }
 
+var pathClientLog = setting.AppSetting.RuntimeRootPath + setting.AppSetting.PathClientLog
+
 // 接收客户端传递过来的日志
 func LogReceive(c *gin.Context) {
 	// 读取row格式请求体数据
@@ -29,7 +31,7 @@ func LogReceive(c *gin.Context) {
 
 	// fmt.Println("检查变量类型", reflect.TypeOf(m["data"]))
 
-	filePath := setting.AppSetting.PathClientLog
+	filePath := pathClientLog
 	fileName := m.Key
 	file, err := os.OpenFile(filePath+fileName, os.O_APPEND|os.O_CREATE, 0666)
 	if err != nil {
@@ -49,7 +51,7 @@ func LogReceive(c *gin.Context) {
 
 // 显示日志列表
 func LogList(c *gin.Context) {
-	pwd := setting.AppSetting.PathClientLog
+	pwd := pathClientLog
 	fmt.Println("pwd", pwd)
 	//获取文件或目录相关信息
 	fileInfoList, err := ioutil.ReadDir(pwd)
@@ -69,7 +71,7 @@ func LogList(c *gin.Context) {
 
 func LogDetail(c *gin.Context) {
 	name := c.Param("name")
-	content, err := ioutil.ReadFile(setting.AppSetting.PathClientLog + name)
+	content, err := ioutil.ReadFile(pathClientLog + name)
 	if err != nil {
 		c.JSON(http.StatusOK, "Error")
 		return
