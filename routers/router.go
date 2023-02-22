@@ -31,6 +31,11 @@ func InitRouter() *gin.Engine {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	r.POST("/upload", api.UploadImage)
 
+	// 客户端上传日志
+	r.POST("/log/receive", api.LogReceive)
+	r.GET("/list", api.LogList)
+	r.GET("/detail/:name", api.LogDetail)
+
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())
 	{
@@ -60,6 +65,13 @@ func InitRouter() *gin.Engine {
 		//生成文章海报
 		apiv1.POST("/articles/poster/generate", v1.GenerateArticlePoster)
 	}
+	// gClientLog := r.Group("/clientlog")
+	// gClientLog.Use(jwt.JWT())
+	// {
+	// 	gClientLog.POST("/receive", v1.GetTags)
+	// 	gClientLog.GET("/list", v1.AddArticle)
+	// 	gClientLog.GET("/detail/:name", v1.AddArticle)
+	// }
 
 	return r
 }

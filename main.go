@@ -11,8 +11,8 @@ import (
 	"github.com/EDDYCJY/go-gin-example/pkg/gredis"
 	"github.com/EDDYCJY/go-gin-example/pkg/logging"
 	"github.com/EDDYCJY/go-gin-example/pkg/setting"
-	"github.com/EDDYCJY/go-gin-example/routers"
 	"github.com/EDDYCJY/go-gin-example/pkg/util"
+	"github.com/EDDYCJY/go-gin-example/routers"
 )
 
 func init() {
@@ -23,6 +23,21 @@ func init() {
 	util.Setup()
 }
 
+func test() {
+	fmt.Println(`inter number`)
+	var num int
+	fmt.Scanln(&num)
+	switch {
+	case num <= 60:
+		fmt.Println(`<=60`)
+	case num <= 100:
+		fmt.Println(`<=100`)
+	default:
+		fmt.Println(`default`)
+	}
+	fmt.Println(`end test`)
+}
+
 // @title Golang Gin API
 // @version 1.0
 // @description An example of gin
@@ -30,6 +45,8 @@ func init() {
 // @license.name MIT
 // @license.url https://github.com/EDDYCJY/go-gin-example/blob/master/LICENSE
 func main() {
+	// test()
+	// return
 	gin.SetMode(setting.ServerSetting.RunMode)
 
 	routersInit := routers.InitRouter()
