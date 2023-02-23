@@ -1,6 +1,7 @@
 package setting
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -80,6 +81,10 @@ func Setup() {
 	ServerSetting.ReadTimeout = ServerSetting.ReadTimeout * time.Second
 	ServerSetting.WriteTimeout = ServerSetting.WriteTimeout * time.Second
 	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
+
+	fmt.Println("888")
+	fmt.Println(AppSetting.RuntimeRootPath + AppSetting.PathClientLog)
+	fmt.Println("999")
 }
 
 // mapTo map section

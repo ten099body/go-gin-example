@@ -32,9 +32,10 @@ func InitRouter() *gin.Engine {
 	r.POST("/upload", api.UploadImage)
 
 	// 客户端上传日志
+	r.LoadHTMLGlob("views/**/*")
 	r.POST("/log/receive", api.LogReceive)
-	r.GET("/list", api.LogList)
-	r.GET("/detail/:name", api.LogDetail)
+	r.GET("/log/list", api.LogList)
+	r.GET("/log/detail/:name", api.LogDetail)
 
 	apiv1 := r.Group("/api/v1")
 	apiv1.Use(jwt.JWT())

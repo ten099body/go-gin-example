@@ -9,6 +9,9 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/EDDYCJY/go-gin-example/pkg/app"
+	"github.com/EDDYCJY/go-gin-example/pkg/e"
+	"github.com/EDDYCJY/go-gin-example/pkg/logging"
 	"github.com/EDDYCJY/go-gin-example/pkg/setting"
 	"github.com/gin-gonic/gin"
 )
@@ -18,24 +21,21 @@ type ReqReceive struct {
 	Data []string `json:"data"`
 }
 
-var pathClientLog = setting.AppSetting.RuntimeRootPath + setting.AppSetting.PathClientLog
-
 // 接收客户端传递过来的日志
 func LogReceive(c *gin.Context) {
-	// 读取row格式请求体数据
+	appG := app.Gin{C: c}
 	b, _ := c.GetRawData()
-	// 定义map或结构体
 	var m ReqReceive
-	// 反序列化
 	_ = json.Unmarshal(b, &m)
 
 	// fmt.Println("检查变量类型", reflect.TypeOf(m["data"]))
 
-	filePath := pathClientLog
 	fileName := m.Key
-	file, err := os.OpenFile(filePath+fileName, os.O_APPEND|os.O_CREATE, 0666)
+	fmt.Println(setting.AppSetting.PathClientLog + fileName)
+	file, err := os.OpenFile(setting.AppSetting.PathClientLog+fileName, os.O_APPEND|os.O_CREATE, 0666)
 	if err != nil {
-		c.JSON(http.StatusOK, "Save failed")
+		logging.Error(err)
+		appG.Response200(e.ERROR, "Save failed", nil)
 		return
 	}
 	//及时关闭
@@ -46,12 +46,12 @@ func LogReceive(c *gin.Context) {
 		writer.WriteString(m.Data[i] + "\n")
 	}
 	writer.Flush()
-	c.JSON(http.StatusOK, "Success")
+	appG.Response200(e.SUCCESS, "Success", nil)
 }
 
 // 显示日志列表
 func LogList(c *gin.Context) {
-	pwd := pathClientLog
+	pwd := setting.AppSetting.PathClientLog
 	fmt.Println("pwd", pwd)
 	//获取文件或目录相关信息
 	fileInfoList, err := ioutil.ReadDir(pwd)
@@ -66,12 +66,12 @@ func LogList(c *gin.Context) {
 	data := map[string]interface{}{
 		"fileNames": fileNames,
 	}
-	c.HTML(http.StatusOK, "log/list.tmpl", data)
+	c.HTML(http.StatusOK, "log/list.html", data)
 }
 
 func LogDetail(c *gin.Context) {
 	name := c.Param("name")
-	content, err := ioutil.ReadFile(pathClientLog + name)
+	content, err := ioutil.ReadFile(setting.AppSetting.PathClientLog + name)
 	if err != nil {
 		c.JSON(http.StatusOK, "Error")
 		return

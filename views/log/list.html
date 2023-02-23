@@ -1,0 +1,10 @@
+{{ define "log/list.html" }}
+<!DOCTYPE html>
+<html>
+<body>
+    {{range $v := .fileNames}}
+    <p><a href="/log/detail/{{$v}}">{{$v}}</a></p>
+    {{end}}
+</body>
+</html>
+{{ end }}
