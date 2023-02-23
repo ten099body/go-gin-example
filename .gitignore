@@ -1,6 +1,8 @@
 .idea/
 .DS_Store
 
-runtime/*
+runtime/logs/*
+runtime/clientlog/*
+runtime/qrcode/*
 !runtime/qrcode/bg.jpg
-!runtime/fonts
+
