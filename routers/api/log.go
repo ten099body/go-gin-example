@@ -3,7 +3,6 @@ package api
 import (
 	"bufio"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -51,7 +50,6 @@ func LogReceive(c *gin.Context) {
 // 显示日志列表
 func LogList(c *gin.Context) {
 	pwd := setting.AppSetting.PathClientLog
-	fmt.Println("pwd", pwd)
 	//获取文件或目录相关信息
 	fileInfoList, err := ioutil.ReadDir(pwd)
 	if err != nil {
