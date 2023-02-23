@@ -31,7 +31,6 @@ func LogReceive(c *gin.Context) {
 	// fmt.Println("检查变量类型", reflect.TypeOf(m["data"]))
 
 	fileName := m.Key
-	fmt.Println(setting.AppSetting.PathClientLog + fileName)
 	file, err := os.OpenFile(setting.AppSetting.PathClientLog+fileName, os.O_APPEND|os.O_CREATE, 0666)
 	if err != nil {
 		logging.Error(err)
