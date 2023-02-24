@@ -1,9 +1,9 @@
 package api
 
 import (
+	"encoding/json"
 	"net/http"
 
-	"github.com/astaxie/beego/validation"
 	"github.com/gin-gonic/gin"
 
 	"github.com/EDDYCJY/go-gin-example/models"
@@ -15,7 +15,8 @@ import (
 type auth struct {
 	Account  string `valid:"Required; MaxSize(50)"`
 	Password string `valid:"Required; MaxSize(50)"`
-	Device   device `json:"device"` // 设备信息
+	// DeviceStr string `valid:"Required;"` // 设备信息
+	device device
 }
 
 // 手机设备信息
@@ -52,32 +53,37 @@ type device struct {
 // @Router /auth [post]
 func GetAuth(c *gin.Context) {
 	appG := app.Gin{C: c}
-	valid := validation.Validation{}
+	// valid := validation.Validation{}
 
-	account := c.PostForm("account")
-	password := c.PostForm("password")
+	// account := c.PostForm("account")
+	// password := c.PostForm("password")
+	// deviceStr := c.PostFormMap("deviceStr")
+	// fmt.Println(deviceStr)
 
-	a := auth{Account: account, Password: password}
-	ok, _ := valid.Valid(&a)
+	// a := auth{Account: account, Password: password, device: deviceStr}
+	// ok, _ := valid.Valid(&a)
 
-	if !ok {
-		app.MarkErrors(valid.Errors)
-		appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
-		return
-	}
+	// if !ok {
+	// 	app.MarkErrors(valid.Errors)
+	// 	appG.Response(http.StatusBadRequest, e.INVALID_PARAMS, nil)
+	// 	return
+	// }
+	b, _ := c.GetRawData()
+	var auth auth
+	_ = json.Unmarshal(b, &auth)
 
 	merchantModel := models.Merchant{}
-	m, err := merchantModel.GetByAccount(account)
+	m, err := merchantModel.GetByAccount(auth.Account)
 	if err != nil {
 		appG.Response200(e.SUCCESS, `Can't find this account`, nil)
 		return
 	}
-	if m.Password != password {
+	if m.Password != auth.Password {
 		appG.Response200(e.SUCCESS, `Pwd error`, nil)
 		return
 	}
 
-	token, err := util.GenerateToken(account, password)
+	token, err := util.GenerateToken(auth.Account, auth.Password)
 	if err != nil {
 		appG.Response(http.StatusInternalServerError, e.ERROR_AUTH_TOKEN, nil)
 		return
