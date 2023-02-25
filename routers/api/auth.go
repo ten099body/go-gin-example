@@ -72,6 +72,7 @@ func GetAuth(c *gin.Context) {
 	var auth auth
 	_ = json.Unmarshal(b, &auth)
 
+	// m, err := models.MerchantModel().GetByAccount(auth.Account)
 	merchantModel := models.Merchant{}
 	m, err := merchantModel.GetByAccount(auth.Account)
 	if err != nil {
